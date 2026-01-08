@@ -1,27 +1,19 @@
 package com.taskify.taskify_api.service;
 
 import com.taskify.taskify_api.entity.Task;
-import com.taskify.taskify_api.repository.TaskRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class TaskService {
+public interface TaskService {
+    Task createTask(Task task);
 
-    private final TaskRepository taskRepository;
+    List<Task> getAllTasks();
 
-    public TaskService(TaskRepository taskRepository) {
-        this.taskRepository = taskRepository;
-    }
+    Task getTaskById(Long id);
 
-    // Add a new task
-    public Task createTask(Task task) {
-        return taskRepository.save(task);
-    }
+    Task patchTask(Long id, Task task);
 
-    // Get all tasks
-    public List<Task> getAllTasks() {
-        return taskRepository.findAll();
-    }
+    void deleteTask(Long id);
 }
